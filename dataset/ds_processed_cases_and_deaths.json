@@ -1,5 +1,5 @@
 {
-	"name": "ds_raw_cases_and_deaths",
+	"name": "ds_processed_cases_and_deaths",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_covid2019storagedl",
@@ -10,20 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "cases-deaths.csv",
-				"folderPath": "ecdc",
-				"fileSystem": "raw"
+				"folderPath": "ecdc/cases_deaths",
+				"fileSystem": "processed"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "<!DOCTYPE html>",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
