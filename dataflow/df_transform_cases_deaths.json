@@ -16,6 +16,12 @@
 			"transformations": [
 				{
 					"name": "filterEuropeOnly"
+				},
+				{
+					"name": "selectOnlyRequiredFields"
+				},
+				{
+					"name": "pivotCounts"
 				}
 			],
 			"scriptLines": [
@@ -33,7 +39,28 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> CasesAndDeathsSource",
-				"CasesAndDeathsSource filter(continent == 'Europe' && not(isNull(country_code))) ~> filterEuropeOnly"
+				"CasesAndDeathsSource filter(continent == 'Europe' && not(isNull(country_code))) ~> filterEuropeOnly",
+				"filterEuropeOnly select(mapColumn(",
+				"          country,",
+				"          country_code,",
+				"          population,",
+				"          indicator,",
+				"          daily_count,",
+				"          source,",
+				"          each(match(name == 'date'),",
+				"               'reported' + '_date' = $$)",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectOnlyRequiredFields",
+				"selectOnlyRequiredFields pivot(groupBy(country,",
+				"          country_code,",
+				"          population,",
+				"          source,",
+				"          reported_date),",
+				"     pivotBy(indicator, ['confirmed cases', 'deaths']),",
+				"     count = sum(daily_count),",
+				"     columnNaming: '$V_$N',",
+				"     lateral: true) ~> pivotCounts"
 			]
 		}
 	}
