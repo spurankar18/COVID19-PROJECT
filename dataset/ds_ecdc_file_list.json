@@ -1,0 +1,29 @@
+{
+	"name": "ds_ecdc_file_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_ablob_covid2019storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ecdc-file-list-for-2-files.json",
+				"container": "configs"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sourceRelativeURL": {
+					"type": "string"
+				},
+				"sinkFileName": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
