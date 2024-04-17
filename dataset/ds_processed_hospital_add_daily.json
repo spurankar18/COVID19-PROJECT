@@ -1,0 +1,23 @@
+{
+	"name": "ds_processed_hospital_add_daily",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_covid2019storagedl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ecdc/hospital_admission_daily",
+				"fileSystem": "processed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
