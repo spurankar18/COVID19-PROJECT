@@ -5,6 +5,9 @@
 			"referenceName": "ls_ablob_covid2019storage",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "lookup"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
