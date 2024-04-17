@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "hospital-admissions.csv",
-				"folderPath": "ecdc",
+				"fileName": "hospital_admissions.csv",
+				"folderPath": "ecdc/hospital_admissions",
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",

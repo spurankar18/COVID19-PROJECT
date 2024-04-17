@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "ecdc-file-list.json",
+				"fileName": "066 ecdc-file-list.json",
 				"container": "configs"
 			}
 		},
