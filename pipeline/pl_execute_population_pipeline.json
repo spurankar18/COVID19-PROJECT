@@ -23,7 +23,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "Execute ingest population data ",
+						"activity": "Execute ingest population data",
 						"dependencyConditions": [
 							"Succeeded"
 						]
