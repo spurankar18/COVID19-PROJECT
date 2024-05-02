@@ -10,6 +10,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "source"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_test_dept",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -27,7 +34,7 @@
 			],
 			"transformations": [
 				{
-					"name": "filter1"
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -43,8 +50,19 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source",
-				"source filter(Dept_id==101) ~> filter1",
-				"filter1 sink(allowSchemaDrift: true,",
+				"source(output(",
+				"          id as integer,",
+				"          dept_name as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source, source1 join(Dept_id == source1@id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          ID as string,",
